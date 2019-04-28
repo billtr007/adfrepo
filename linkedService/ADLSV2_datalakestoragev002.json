@@ -1,0 +1,17 @@
+{
+	"name": "ADLSV2_datalakestoragev002",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://datalakestoragev002.dfs.core.windows.net",
+			"tenant": "d9384a11-3828-4645-8183-029509349c1c",
+			"servicePrincipalId": "323ac716-122e-461d-a1f8-3f7caf3734ae",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4YzA2ZjhiOC1jZTFjLTQ2N2YtYjM3Ni03YWUwYmFjMjM1YjgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "IR-VM01",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
