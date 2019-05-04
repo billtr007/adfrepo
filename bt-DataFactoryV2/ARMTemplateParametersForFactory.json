@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "bt-DataFactoryV2"
+		},
+		"AzureBlobTarget1_connectionString": {
+			"value": ""
+		},
+		"Sql_OnMyLaptop_connectionString": {
+			"value": ""
+		},
+		"Sql_OnMyLaptop_password": {
+			"value": ""
+		},
+		"Sql_OnMyLaptop_properties_typeProperties_userName": {
+			"value": "DESKTOP-HIDI3VC\\Bill"
+		},
+		"Teradata_onprem1_properties_typeProperties_server": {
+			"value": "TDIDWCOP1.unix.gsm1900.org"
+		},
+		"Teradata_onprem1_properties_typeProperties_username": {
+			"value": "APPL_SSI_AZURE"
+		},
+		"razr_keyvault_properties_typeProperties_baseUrl": {
+			"value": "https://bt-keyvault01.vault.azure.net/"
+		}
+	}
+}
