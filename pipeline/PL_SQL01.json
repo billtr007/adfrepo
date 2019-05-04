@@ -16,9 +16,19 @@
 					"source": {
 						"type": "SqlServerSource"
 					},
+					"sink": {
+						"type": "SqlServerSink",
+						"writeBatchSize": 10000
+					},
 					"enableStaging": false
 				},
 				"inputs": [
+					{
+						"referenceName": "DS_SQL01",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
 					{
 						"referenceName": "DS_SQL01",
 						"type": "DatasetReference"
