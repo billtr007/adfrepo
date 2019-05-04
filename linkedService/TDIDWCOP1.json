@@ -1,0 +1,23 @@
+{
+	"name": "TDIDWCOP1",
+	"properties": {
+		"type": "Teradata",
+		"typeProperties": {
+			"server": "TDIDWCOP1.unix.gsm1900.org",
+			"authenticationType": "Basic",
+			"username": "APPL_SSI_AZURE",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "razr_keyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "onp-tdidw-applssiazure-password"
+			}
+		},
+		"connectVia": {
+			"referenceName": "XPS-IR01",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
