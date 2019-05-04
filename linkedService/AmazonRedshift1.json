@@ -1,14 +1,29 @@
 {
 	"name": "AmazonRedshift1",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
-		"type": "AmazonRedshift",
+		"type": "SqlServer",
 		"typeProperties": {
-			"server": "sdgdfgdfg",
-			"database": "asdfasdf",
-			"port": 5439,
-			"username": "asdfasdf",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkJULURBVEFGQUNUT1JZVjJfOTBkNjc2NGItZTNmOC00Yzc5LTk4YWUtZTc4MjI1ZWU0YmFkIg0KfQ=="
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "razr_keyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "DESKTOPHIDI3VC"
+			},
+			"userName": "DESKTOP-HIDI3VC\\sqlsrv",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "razr_keyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "sqlsrv"
+			}
+		},
+		"connectVia": {
+			"referenceName": "XPS-IR01",
+			"type": "IntegrationRuntimeReference"
 		}
 	}
 }
