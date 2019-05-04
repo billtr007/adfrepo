@@ -1,0 +1,12 @@
+{
+	"name": "Http__CensusBureauAmericanSurvey",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
