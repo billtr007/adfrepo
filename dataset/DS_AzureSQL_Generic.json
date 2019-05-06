@@ -14,10 +14,7 @@
 		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
-			"tableName": {
-				"value": "@dataset().SalesLT.ProductCategory",
-				"type": "Expression"
-			}
+			"tableName": "@dataset().DSTableName"
 		}
 	}
 }
