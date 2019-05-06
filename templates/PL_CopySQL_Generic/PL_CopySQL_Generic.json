@@ -1,0 +1,196 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name"
+		},
+		"LS_AzureSQL_Generic": {
+			"type": "string"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/PL_CopySQL_Generic')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetTableList",
+						"type": "Lookup",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource"
+							},
+							"dataset": {
+								"referenceName": "DS_AzureSQL_Generic",
+								"type": "DatasetReference"
+							}
+						}
+					},
+					{
+						"name": "Copy All Tables",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "GetTableList",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('GetTableList').output.value",
+								"type": "Expression"
+							},
+							"isSequential": true,
+							"activities": [
+								{
+									"name": "Truncate Target Table",
+									"type": "SqlServerStoredProcedure",
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"typeProperties": {
+										"storedProcedureName": "sys.sp_executesql",
+										"storedProcedureParameters": {
+											"statement": {
+												"value": {
+													"value": "@concat('TRUNCATE TABLE ',item().TableName)",
+													"type": "Expression"
+												},
+												"type": "string"
+											}
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "[parameters('LS_AzureSQL_Generic')]",
+										"type": "LinkedServiceReference"
+									}
+								},
+								{
+									"name": "Copy Table",
+									"type": "Copy",
+									"dependsOn": [
+										{
+											"activity": "Truncate Target Table",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"typeProperties": {
+										"source": {
+											"type": "AzureSqlSource"
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"writeBatchSize": 10000
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "DS_AzureSQL_Generic",
+											"type": "DatasetReference"
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "DS_AzureSQL_Generic",
+											"type": "DatasetReference"
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"parameters": {
+					"SourceServerInstance": {
+						"type": "string"
+					},
+					"SourceDatabaseName": {
+						"type": "string"
+					},
+					"SoureSQLUser": {
+						"type": "string"
+					},
+					"SourceSQLPassword": {
+						"type": "string"
+					},
+					"SourceTable": {
+						"type": "string"
+					},
+					"SinkServerInstance": {
+						"type": "string"
+					},
+					"SinkDatabaseName": {
+						"type": "string"
+					},
+					"SinkSQLUser": {
+						"type": "string"
+					},
+					"SinkSQLPassword": {
+						"type": "string"
+					},
+					"SinkSQLTable": {
+						"type": "string"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DS_AzureSQL_Generic')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_AzureSQL_Generic')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('LS_AzureSQL_Generic')]",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"ServerInstance": "@dataset().DSServerInstance",
+						"DatabaseName": "@dataset().DSDatabaseName",
+						"SQLUser": "@dataset().DSSQLUser",
+						"SQLPassword": "@dataset().DSSQLPassword"
+					}
+				},
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"tableName": {
+						"value": "@dataset().Production.ProductCategory",
+						"type": "Expression"
+					}
+				}
+			}
+		}
+	]
+}
