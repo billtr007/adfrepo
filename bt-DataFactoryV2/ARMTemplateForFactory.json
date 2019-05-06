@@ -7,33 +7,37 @@
 			"metadata": "Data Factory Name",
 			"defaultValue": "bt-DataFactoryV2"
 		},
-		"AzureBlobTarget1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobTarget1'"
-		},
-		"Sql_OnMyLaptop_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'Sql_OnMyLaptop'"
-		},
-		"Sql_OnMyLaptop_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Sql_OnMyLaptop'"
-		},
-		"Sql_OnMyLaptop_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "DESKTOP-HIDI3VC\\Bill"
-		},
-		"Teradata_onprem1_properties_typeProperties_server": {
+		"TDIDWCOP1_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "TDIDWCOP1.unix.gsm1900.org"
 		},
-		"Teradata_onprem1_properties_typeProperties_username": {
+		"TDIDWCOP1_properties_typeProperties_username": {
 			"type": "string",
 			"defaultValue": "APPL_SSI_AZURE"
 		},
 		"razr_keyvault_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://bt-keyvault01.vault.azure.net/"
+		},
+		"LS_FileShare_Temp_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "fileuser01"
+		},
+		"LS_Web_Generic_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www2.census.gov/programs-surveys/acs/summary_file/2016/data/5_year_by_state/"
+		},
+		"LS_Blob_Destination1_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "BlobDestination1"
+		},
+		"LS_SQL_Desktop_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "DESKTOPHIDI3VC"
+		},
+		"LS_SQL_Desktop_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-HIDI3VC\\sqlsrv"
 		}
 	},
 	"variables": {
@@ -41,53 +45,16 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureBlobTarget1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('AzureBlobTarget1_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Sql_OnMyLaptop')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('Sql_OnMyLaptop_connectionString')]",
-					"userName": "[parameters('Sql_OnMyLaptop_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('Sql_OnMyLaptop_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "IR-VM01",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/IR-VM01')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Teradata_onprem1')]",
+			"name": "[concat(parameters('factoryName'), '/TDIDWCOP1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "Teradata",
 				"typeProperties": {
-					"server": "[parameters('Teradata_onprem1_properties_typeProperties_server')]",
+					"server": "[parameters('TDIDWCOP1_properties_typeProperties_server')]",
 					"authenticationType": "Basic",
-					"username": "[parameters('Teradata_onprem1_properties_typeProperties_username')]",
+					"username": "[parameters('TDIDWCOP1_properties_typeProperties_username')]",
 					"password": {
 						"type": "AzureKeyVaultSecret",
 						"store": {
@@ -98,12 +65,12 @@
 					}
 				},
 				"connectVia": {
-					"referenceName": "IR-VM01",
+					"referenceName": "XPS-IR01",
 					"type": "IntegrationRuntimeReference"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/IR-VM01')]",
+				"[concat(variables('factoryId'), '/integrationRuntimes/XPS-IR01')]",
 				"[concat(variables('factoryId'), '/linkedServices/razr_keyvault')]"
 			]
 		},
@@ -129,6 +96,118 @@
 				"typeProperties": {}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/XPS-IR01')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_FileShare_Temp')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "\\\\DESKTOP-HIDI3VC\\temp",
+					"userId": "[parameters('LS_FileShare_Temp_properties_typeProperties_userId')]",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "razr_keyvault",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "TempFileShare"
+					}
+				},
+				"connectVia": {
+					"referenceName": "XPS-IR01",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/XPS-IR01')]",
+				"[concat(variables('factoryId'), '/linkedServices/razr_keyvault')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_Web_Generic')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('LS_Web_Generic_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_Blob_Destination1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "razr_keyvault",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "[parameters('LS_Blob_Destination1_properties_typeProperties_connectionString_secretName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/razr_keyvault')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_SQL_Desktop')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "razr_keyvault",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "[parameters('LS_SQL_Desktop_properties_typeProperties_connectionString_secretName')]"
+					},
+					"userName": "[parameters('LS_SQL_Desktop_properties_typeProperties_userName')]",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "razr_keyvault",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "sqlsrv"
+					}
+				},
+				"connectVia": {
+					"referenceName": "XPS-IR01",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/XPS-IR01')]",
+				"[concat(variables('factoryId'), '/linkedServices/razr_keyvault')]"
+			]
 		}
 	]
 }

@@ -5,26 +5,29 @@
 		"factoryName": {
 			"value": "bt-DataFactoryV2"
 		},
-		"AzureBlobTarget1_connectionString": {
-			"value": ""
-		},
-		"Sql_OnMyLaptop_connectionString": {
-			"value": ""
-		},
-		"Sql_OnMyLaptop_password": {
-			"value": ""
-		},
-		"Sql_OnMyLaptop_properties_typeProperties_userName": {
-			"value": "DESKTOP-HIDI3VC\\Bill"
-		},
-		"Teradata_onprem1_properties_typeProperties_server": {
+		"TDIDWCOP1_properties_typeProperties_server": {
 			"value": "TDIDWCOP1.unix.gsm1900.org"
 		},
-		"Teradata_onprem1_properties_typeProperties_username": {
+		"TDIDWCOP1_properties_typeProperties_username": {
 			"value": "APPL_SSI_AZURE"
 		},
 		"razr_keyvault_properties_typeProperties_baseUrl": {
 			"value": "https://bt-keyvault01.vault.azure.net/"
+		},
+		"LS_FileShare_Temp_properties_typeProperties_userId": {
+			"value": "fileuser01"
+		},
+		"LS_Web_Generic_properties_typeProperties_url": {
+			"value": "https://www2.census.gov/programs-surveys/acs/summary_file/2016/data/5_year_by_state/"
+		},
+		"LS_Blob_Destination1_properties_typeProperties_connectionString_secretName": {
+			"value": "BlobDestination1"
+		},
+		"LS_SQL_Desktop_properties_typeProperties_connectionString_secretName": {
+			"value": "DESKTOPHIDI3VC"
+		},
+		"LS_SQL_Desktop_properties_typeProperties_userName": {
+			"value": "DESKTOP-HIDI3VC\\sqlsrv"
 		},
 		"containerUri": {
 			"value": ""

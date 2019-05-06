@@ -1,0 +1,114 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "bt-DataFactoryV2"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/TDIDWCOP1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "Teradata",
+				"typeProperties": {
+					"server": "TDIDWCOP1.unix.gsm1900.org",
+					"authenticationType": "Basic",
+					"username": "APPL_SSI_AZURE",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "razr_keyvault",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "onp-tdidw-applssiazure-password"
+					}
+				},
+				"connectVia": {
+					"referenceName": "XPS-IR01",
+					"type": "IntegrationRuntimeReference"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_FileShare_Temp')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "\\\\DESKTOP-HIDI3VC\\temp",
+					"userId": "fileuser01",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "razr_keyvault",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "TempFileShare"
+					}
+				},
+				"connectVia": {
+					"referenceName": "XPS-IR01",
+					"type": "IntegrationRuntimeReference"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_Blob_Destination1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "razr_keyvault",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "BlobDestination1"
+					}
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_SQL_Desktop')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "razr_keyvault",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "DESKTOPHIDI3VC"
+					},
+					"userName": "DESKTOP-HIDI3VC\\sqlsrv",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "razr_keyvault",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "sqlsrv"
+					}
+				},
+				"connectVia": {
+					"referenceName": "XPS-IR01",
+					"type": "IntegrationRuntimeReference"
+				}
+			}
+		}
+	]
+}

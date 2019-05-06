@@ -7,33 +7,37 @@
 			"metadata": "Data Factory Name",
 			"defaultValue": "bt-DataFactoryV2"
 		},
-		"AzureBlobTarget1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobTarget1'"
-		},
-		"Sql_OnMyLaptop_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'Sql_OnMyLaptop'"
-		},
-		"Sql_OnMyLaptop_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Sql_OnMyLaptop'"
-		},
-		"Sql_OnMyLaptop_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "DESKTOP-HIDI3VC\\Bill"
-		},
-		"Teradata_onprem1_properties_typeProperties_server": {
+		"TDIDWCOP1_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "TDIDWCOP1.unix.gsm1900.org"
 		},
-		"Teradata_onprem1_properties_typeProperties_username": {
+		"TDIDWCOP1_properties_typeProperties_username": {
 			"type": "string",
 			"defaultValue": "APPL_SSI_AZURE"
 		},
 		"razr_keyvault_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://bt-keyvault01.vault.azure.net/"
+		},
+		"LS_FileShare_Temp_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "fileuser01"
+		},
+		"LS_Web_Generic_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www2.census.gov/programs-surveys/acs/summary_file/2016/data/5_year_by_state/"
+		},
+		"LS_Blob_Destination1_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "BlobDestination1"
+		},
+		"LS_SQL_Desktop_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "DESKTOPHIDI3VC"
+		},
+		"LS_SQL_Desktop_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-HIDI3VC\\sqlsrv"
 		},
 		"containerUri": {
 			"type": "string",
@@ -62,26 +66,29 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"AzureBlobTarget1_connectionString": {
-						"value": "[parameters('AzureBlobTarget1_connectionString')]"
-					},
-					"Sql_OnMyLaptop_connectionString": {
-						"value": "[parameters('Sql_OnMyLaptop_connectionString')]"
-					},
-					"Sql_OnMyLaptop_password": {
-						"value": "[parameters('Sql_OnMyLaptop_password')]"
-					},
 					"razr_keyvault_properties_typeProperties_baseUrl": {
 						"value": "[parameters('razr_keyvault_properties_typeProperties_baseUrl')]"
 					},
-					"Sql_OnMyLaptop_properties_typeProperties_userName": {
-						"value": "[parameters('Sql_OnMyLaptop_properties_typeProperties_userName')]"
+					"LS_Web_Generic_properties_typeProperties_url": {
+						"value": "[parameters('LS_Web_Generic_properties_typeProperties_url')]"
 					},
-					"Teradata_onprem1_properties_typeProperties_server": {
-						"value": "[parameters('Teradata_onprem1_properties_typeProperties_server')]"
+					"TDIDWCOP1_properties_typeProperties_server": {
+						"value": "[parameters('TDIDWCOP1_properties_typeProperties_server')]"
 					},
-					"Teradata_onprem1_properties_typeProperties_username": {
-						"value": "[parameters('Teradata_onprem1_properties_typeProperties_username')]"
+					"TDIDWCOP1_properties_typeProperties_username": {
+						"value": "[parameters('TDIDWCOP1_properties_typeProperties_username')]"
+					},
+					"LS_FileShare_Temp_properties_typeProperties_userId": {
+						"value": "[parameters('LS_FileShare_Temp_properties_typeProperties_userId')]"
+					},
+					"LS_Blob_Destination1_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('LS_Blob_Destination1_properties_typeProperties_connectionString_secretName')]"
+					},
+					"LS_SQL_Desktop_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('LS_SQL_Desktop_properties_typeProperties_connectionString_secretName')]"
+					},
+					"LS_SQL_Desktop_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQL_Desktop_properties_typeProperties_userName')]"
 					}
 				}
 			},
