@@ -4,7 +4,7 @@
 		"type": "AmazonS3",
 		"typeProperties": {
 			"serviceUrl": "",
-			"accessKeyId": "AKIAIYWDUWJVCOW65FDA",
+			"accessKeyId": "ABIAIYWDUWJVCOW76FDA",
 			"secretAccessKey": {
 				"type": "AzureKeyVaultSecret",
 				"store": {
