@@ -1,0 +1,21 @@
+{
+	"name": "SK_BlobStore",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Blob_Destination1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"path": {
+				"type": "String"
+			}
+		},
+		"type": "AzureBlob",
+		"typeProperties": {
+			"folderPath": {
+				"value": "@dataset().path",
+				"type": "Expression"
+			}
+		}
+	}
+}
