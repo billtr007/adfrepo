@@ -1,0 +1,12 @@
+{
+	"name": "LS_Web_Generic",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://www2.census.gov/programs-surveys/acs/summary_file/2016/data/5_year_by_state/",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
