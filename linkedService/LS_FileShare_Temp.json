@@ -1,0 +1,22 @@
+{
+	"name": "LS_FileShare_Temp",
+	"properties": {
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "\\\\DESKTOP-HIDI3VC\\temp",
+			"userId": "fileuser01",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "razr_keyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "TempFileShare"
+			}
+		},
+		"connectVia": {
+			"referenceName": "XPS-IR01",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
