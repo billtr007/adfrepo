@@ -1,0 +1,13 @@
+{
+	"name": "DS_Blob_Store",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Blob_Destination1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlob",
+		"typeProperties": {
+			"folderPath": "store"
+		}
+	}
+}
