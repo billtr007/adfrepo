@@ -1,5 +1,5 @@
 {
-	"name": "DS_AzureSQL_Generic",
+	"name": "DS_AzureSQL_Generic1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_AzureSQL_Generic",
@@ -15,7 +15,7 @@
 		"schema": [],
 		"typeProperties": {
 			"tableName": {
-				"value": "@dataset().SalesLT.ProductCategory",
+				"value": "@dataset().Production.ProductCategory",
 				"type": "Expression"
 			}
 		}
