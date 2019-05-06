@@ -1,0 +1,11 @@
+{
+	"name": "DS_SQL01",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQLDesktop",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}

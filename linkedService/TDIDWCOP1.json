@@ -1,6 +1,5 @@
 {
-	"name": "Teradata_onprem1",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"name": "TDIDWCOP1",
 	"properties": {
 		"type": "Teradata",
 		"typeProperties": {
@@ -17,7 +16,7 @@
 			}
 		},
 		"connectVia": {
-			"referenceName": "IR-VM01",
+			"referenceName": "XPS-IR01",
 			"type": "IntegrationRuntimeReference"
 		}
 	}
