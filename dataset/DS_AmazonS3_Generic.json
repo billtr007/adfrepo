@@ -1,0 +1,6 @@
+{
+	"name": "DS_AmazonS3_Generic",
+	"properties": {
+		"type": "AmazonS3Object"
+	}
+}

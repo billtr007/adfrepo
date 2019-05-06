@@ -1,0 +1,11 @@
+{
+	"name": "DS_SQL_DESKTOPHIDI3VC",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_Desktop",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
