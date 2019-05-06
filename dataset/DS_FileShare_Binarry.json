@@ -1,0 +1,10 @@
+{
+	"name": "DS_FileShare_Binarry",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_FileShare_Temp",
+			"type": "LinkedServiceReference"
+		},
+		"type": "FileShare"
+	}
+}
