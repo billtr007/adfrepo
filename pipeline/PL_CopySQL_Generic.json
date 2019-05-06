@@ -1,3 +1,145 @@
 {
-	"name": "pipeline1"
+	"name": "PL_CopySQL_Generic",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetTableList",
+				"type": "Lookup",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource"
+					},
+					"dataset": {
+						"referenceName": "DS_AzureSQL_Generic",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Copy All Tables",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "GetTableList",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('GetTableList').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Truncate Target Table",
+							"type": "SqlServerStoredProcedure",
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"typeProperties": {
+								"storedProcedureName": "sys.sp_executesql",
+								"storedProcedureParameters": {
+									"statement": {
+										"value": "@concat('TRUNCATE TABLE ',item().TableName)",
+										"type": "string"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "LS_AzureSQL_Generic",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "Copy Table",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Truncate Target Table",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBatchSize": 10000
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_AzureSQL_Generic",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_AzureSQL_Generic",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"SourceServerInstance": {
+				"type": "string"
+			},
+			"SourceDatabaseName": {
+				"type": "string"
+			},
+			"SoureSQLUser": {
+				"type": "string"
+			},
+			"SourceSQLPassword": {
+				"type": "string"
+			},
+			"SourceTable": {
+				"type": "string"
+			},
+			"SinkServerInstance": {
+				"type": "string"
+			},
+			"SinkDatabaseName": {
+				"type": "string"
+			},
+			"SinkSQLUser": {
+				"type": "string"
+			},
+			"SinkSQLPassword": {
+				"type": "string"
+			},
+			"SinkSQLTable": {
+				"type": "string"
+			}
+		}
+	}
 }
