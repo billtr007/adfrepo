@@ -1,0 +1,24 @@
+{
+	"name": "LS_AzureSQL_Generic",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"ServerInstance": {
+				"type": "string"
+			},
+			"DatabaseName": {
+				"type": "string"
+			},
+			"SQLUser": {
+				"type": "string"
+			},
+			"SQLPassword": {
+				"type": "string"
+			}
+		},
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=@LinkedService().ServerInstance;Initial Catalog=@LinkedService().DatabaseName;User ID=@LinkedService().SQLUser;Password=@LinkedService().SQLPassword"
+		}
+	}
+}
