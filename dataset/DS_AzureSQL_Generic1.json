@@ -12,12 +12,6 @@
 			}
 		},
 		"type": "AzureSqlTable",
-		"schema": [],
-		"typeProperties": {
-			"tableName": {
-				"value": "@dataset().Production.ProductCategory",
-				"type": "Expression"
-			}
-		}
+		"schema": []
 	}
 }
