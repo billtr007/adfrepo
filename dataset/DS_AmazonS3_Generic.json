@@ -1,6 +1,10 @@
 {
 	"name": "DS_AmazonS3_Generic",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AmazonS3_Layer3",
+			"type": "LinkedServiceReference"
+		},
 		"type": "AmazonS3Object"
 	}
 }
