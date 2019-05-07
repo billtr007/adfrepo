@@ -5,6 +5,23 @@
 			"referenceName": "LS_FileShare_Temp",
 			"type": "LinkedServiceReference"
 		},
-		"type": "FileShare"
+		"type": "FileShare",
+		"structure": [
+			{
+				"name": ""
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": "Allroles_prod.txt",
+			"folderPath": ""
+		}
 	}
 }
