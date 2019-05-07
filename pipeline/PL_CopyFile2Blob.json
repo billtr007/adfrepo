@@ -25,8 +25,8 @@
 				}
 			},
 			{
-				"name": "Copy Data1",
-				"type": "Copy",
+				"name": "ForEach1",
+				"type": "ForEach",
 				"dependsOn": [
 					{
 						"activity": "Get Metadata1",
@@ -35,38 +35,50 @@
 						]
 					}
 				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
 				"typeProperties": {
-					"source": {
-						"type": "FileSystemSource",
-						"recursive": true
+					"items": {
+						"value": "@activity('Get Metadata1').output.itemName",
+						"type": "Expression"
 					},
-					"sink": {
-						"type": "BlobSink"
-					},
-					"enableStaging": false
-				},
-				"inputs": [
-					{
-						"referenceName": "DS_FileShare_Binarry",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "SK_BlobStore",
-						"type": "DatasetReference",
-						"parameters": {
-							"path": "store"
+					"activities": [
+						{
+							"name": "Copy1",
+							"type": "Copy",
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"typeProperties": {
+								"source": {
+									"type": "FileSystemSource",
+									"recursive": true
+								},
+								"sink": {
+									"type": "BlobSink"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_FileShare_Binarry",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "SK_BlobStore",
+									"type": "DatasetReference",
+									"parameters": {
+										"path": "store"
+									}
+								}
+							]
 						}
-					}
-				]
+					]
+				}
 			}
 		]
 	}
