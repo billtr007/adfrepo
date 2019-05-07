@@ -47,12 +47,24 @@
 						"type": "FileSystemSource",
 						"recursive": true
 					},
+					"sink": {
+						"type": "BlobSink"
+					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "DS_FileShare_Binarry",
 						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SK_BlobStore",
+						"type": "DatasetReference",
+						"parameters": {
+							"path": "store"
+						}
 					}
 				]
 			}
