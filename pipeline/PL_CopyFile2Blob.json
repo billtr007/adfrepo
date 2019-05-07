@@ -19,14 +19,13 @@
 					},
 					"fieldList": [
 						"lastModified",
-						"itemName",
-						"size"
+						"itemName"
 					]
 				}
 			},
 			{
-				"name": "ForEach1",
-				"type": "ForEach",
+				"name": "Copy Data1",
+				"type": "Copy",
 				"dependsOn": [
 					{
 						"activity": "Get Metadata1",
@@ -35,50 +34,35 @@
 						]
 					}
 				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"typeProperties": {
-					"items": {
-						"value": "@activity('Copy1').output",
-						"type": "Expression"
+					"source": {
+						"type": "FileSystemSource",
+						"recursive": true
 					},
-					"activities": [
-						{
-							"name": "Copy1",
-							"type": "Copy",
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"typeProperties": {
-								"source": {
-									"type": "FileSystemSource",
-									"recursive": true
-								},
-								"sink": {
-									"type": "BlobSink"
-								},
-								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "DS_FileShare_Binarry",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "SK_BlobStore",
-									"type": "DatasetReference",
-									"parameters": {
-										"path": "store"
-									}
-								}
-							]
-						}
-					]
-				}
+					"sink": {
+						"type": "BlobSink"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_FileShare_Binarry",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_Blob_Store",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		]
 	}
