@@ -37,7 +37,7 @@
 				],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get Metadata1').output",
+						"value": "@activity('Copy1').output",
 						"type": "Expression"
 					},
 					"activities": [
