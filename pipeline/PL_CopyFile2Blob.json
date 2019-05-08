@@ -38,7 +38,7 @@
 				],
 				"typeProperties": {
 					"items": {
-						"value": "@activity(‘Get Metadata1’).output.outputs",
+						"value": "@activity('Get Metadata1').output.value",
 						"type": "Expression"
 					},
 					"activities": [
