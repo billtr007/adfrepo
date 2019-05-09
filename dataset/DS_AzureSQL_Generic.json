@@ -11,10 +11,15 @@
 				"SQLPassword": "@dataset().DSSQLPassword"
 			}
 		},
+		"parameters": {
+			"TableName": {
+				"type": "string"
+			}
+		},
 		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
-			"tableName": "@dataset().DSTableName"
+			"tableName": "@dataset().TableName"
 		}
 	}
 }
