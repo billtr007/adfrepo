@@ -34,12 +34,6 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
-					},
-					{
-						"activity": "Lookup",
-						"dependencyConditions": [
-							"Succeeded"
-						]
 					}
 				],
 				"typeProperties": {
@@ -102,7 +96,8 @@
 					"dataset": {
 						"referenceName": "DS_FileShare_Binarry",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			}
 		]
