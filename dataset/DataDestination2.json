@@ -1,0 +1,11 @@
+{
+	"name": "DataDestination2",
+	"properties": {
+		"description": "Connect to your data destination store.",
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQL_Generic",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable"
+	}
+}
