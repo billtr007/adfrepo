@@ -5,6 +5,11 @@
 			"referenceName": "LS_FileShare_Temp",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"path": {
+				"type": "string"
+			}
+		},
 		"type": "FileShare",
 		"structure": [
 			{
