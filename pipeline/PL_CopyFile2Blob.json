@@ -76,28 +76,6 @@
 						}
 					]
 				}
-			},
-			{
-				"name": "Lookup",
-				"type": "Lookup",
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"typeProperties": {
-					"source": {
-						"type": "FileSystemSource",
-						"recursive": true
-					},
-					"dataset": {
-						"referenceName": "DS_FileShare_Binarry",
-						"type": "DatasetReference"
-					},
-					"firstRowOnly": false
-				}
 			}
 		]
 	}
