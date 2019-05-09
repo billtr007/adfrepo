@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Get Metadata1",
+				"name": "Get Metadata",
 				"type": "GetMetadata",
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -26,11 +26,11 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "ForEach",
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Get Metadata1",
+						"activity": "If Condition",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -38,12 +38,12 @@
 				],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get Metadata1').output.value",
+						"value": "@activity('Get Metadata').output.lastModified",
 						"type": "Expression"
 					},
 					"activities": [
 						{
-							"name": "Copy1",
+							"name": "Copy",
 							"type": "Copy",
 							"policy": {
 								"timeout": "7.00:00:00",
@@ -76,6 +76,51 @@
 							]
 						}
 					]
+				}
+			},
+			{
+				"name": "If Condition",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Lookup",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"typeProperties": {
+					"expression": {
+						"value": "@greater(activity('Get Metadata').output.lastModified, utcnow())",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Lookup",
+				"type": "Lookup",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "FileSystemSource",
+						"recursive": true
+					},
+					"dataset": {
+						"referenceName": "DS_FileShare_Binarry",
+						"type": "DatasetReference"
+					}
 				}
 			}
 		]
