@@ -3,7 +3,7 @@
 	"properties": {
 		"type": "FileServer",
 		"typeProperties": {
-			"host": "\\\\DESKTOP-HIDI3VC\\temp",
+			"host": "dataset().path",
 			"userId": "fileuser01",
 			"password": {
 				"type": "AzureKeyVaultSecret",
