@@ -1,0 +1,11 @@
+{
+	"name": "SK_Azure_SQL007CTR",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQL_Generic",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
