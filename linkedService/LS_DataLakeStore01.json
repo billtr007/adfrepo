@@ -1,0 +1,10 @@
+{
+	"name": "LS_DataLakeStore01",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://adlstore01.dfs.core.windows.net"
+		}
+	}
+}
