@@ -3,7 +3,7 @@
 	"properties": {
 		"type": "FileServer",
 		"typeProperties": {
-			"host": "dataset().path",
+			"host": "@dataset().path",
 			"userId": "fileuser01",
 			"password": {
 				"type": "AzureKeyVaultSecret",
