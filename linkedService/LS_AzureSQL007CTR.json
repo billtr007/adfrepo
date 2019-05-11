@@ -9,7 +9,7 @@
 					"referenceName": "razr_keyvault",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "AdvantureWork-ADPW"
+				"secretName": "AdventureWorkConString"
 			},
 			"servicePrincipalId": "6fdc0e3e-4828-446b-85e9-4e96b73363c9",
 			"servicePrincipalKey": {
