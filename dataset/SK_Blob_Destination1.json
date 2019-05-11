@@ -20,10 +20,8 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"folderPath": {
-				"value": "@dataset().path",
-				"type": "Expression"
-			}
+			"fileName": "",
+			"folderPath": ""
 		}
 	}
 }
