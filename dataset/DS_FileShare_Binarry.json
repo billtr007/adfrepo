@@ -5,6 +5,11 @@
 			"referenceName": "LS_FileShare_Temp",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"SubFolderName": {
+				"type": "string"
+			}
+		},
 		"type": "FileShare",
 		"structure": [
 			{
@@ -21,7 +26,10 @@
 				"firstRowAsHeader": false
 			},
 			"fileName": "",
-			"folderPath": ""
+			"folderPath": {
+				"value": "@dataset().SubFolderName",
+				"type": "Expression"
+			}
 		}
 	}
 }
