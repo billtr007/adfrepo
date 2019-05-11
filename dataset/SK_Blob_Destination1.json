@@ -22,7 +22,7 @@
 			},
 			"fileName": "",
 			"folderPath": {
-				"value": "@dataset().path",
+				"value": "@dataset().ContainerName",
 				"type": "Expression"
 			}
 		}
