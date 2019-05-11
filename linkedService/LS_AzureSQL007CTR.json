@@ -11,7 +11,7 @@
 				},
 				"secretName": "AdvantureWork-ADPW"
 			},
-			"servicePrincipalId": " sql007srv@azureblackbelt.com",
+			"servicePrincipalId": "6fdc0e3e-4828-446b-85e9-4e96b73363c9",
 			"servicePrincipalKey": {
 				"type": "AzureKeyVaultSecret",
 				"store": {
@@ -21,10 +21,6 @@
 				"secretName": "sql007srv"
 			},
 			"tenant": "d9384a11-3828-4645-8183-029509349c1c"
-		},
-		"connectVia": {
-			"referenceName": "IR-VM01",
-			"type": "IntegrationRuntimeReference"
 		}
 	}
 }
