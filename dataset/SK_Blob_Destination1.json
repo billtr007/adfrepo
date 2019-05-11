@@ -21,7 +21,10 @@
 				"firstRowAsHeader": false
 			},
 			"fileName": "",
-			"folderPath": ""
+			"folderPath": {
+				"value": "@dataset().path",
+				"type": "Expression"
+			}
 		}
 	}
 }
