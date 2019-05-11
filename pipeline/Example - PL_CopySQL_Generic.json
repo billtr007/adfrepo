@@ -1,5 +1,5 @@
 {
-	"name": "PL_CopySQL_Generic",
+	"name": "Example - PL_CopySQL_Generic",
 	"properties": {
 		"activities": [
 			{
@@ -54,7 +54,10 @@
 								"storedProcedureName": "sys.sp_executesql",
 								"storedProcedureParameters": {
 									"statement": {
-										"value": "@concat('TRUNCATE TABLE ',item().TableName)",
+										"value": {
+											"value": "@concat('TRUNCATE TABLE ',item().TableName)",
+											"type": "Expression"
+										},
 										"type": "string"
 									}
 								}
