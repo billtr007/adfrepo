@@ -5,6 +5,11 @@
 			"referenceName": "LS_Blob_Destination1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"path": {
+				"type": "string"
+			}
+		},
 		"type": "AzureBlob",
 		"typeProperties": {
 			"fileName": "",
