@@ -1,5 +1,5 @@
 {
-	"name": "DS_FileShare_Binarry",
+	"name": "DS_FileFolder",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_FileShare_Temp",
