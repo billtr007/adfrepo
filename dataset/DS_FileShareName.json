@@ -1,5 +1,5 @@
 {
-	"name": "DS1_FileShareName",
+	"name": "DS_FileShareName",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_FileShare_Temp",
