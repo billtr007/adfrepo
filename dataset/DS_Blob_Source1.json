@@ -1,5 +1,5 @@
 {
-	"name": "DS_Blob_Destination1",
+	"name": "DS_Blob_Source1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_Blob_Destination1",
@@ -13,7 +13,10 @@
 		"type": "AzureBlob",
 		"typeProperties": {
 			"fileName": "",
-			"folderPath": "@dataset().path"
+			"folderPath": {
+				"value": "@dataset().path",
+				"type": "Expression"
+			}
 		}
 	}
 }
