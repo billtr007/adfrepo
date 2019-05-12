@@ -1,6 +1,20 @@
 {
 	"name": "DS_AzureSQL",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"DatabaseName": {
+				"type": "string",
+				"defaultValue": "@linkedservice().DatabaseName"
+			},
+			"TableName": {
+				"type": "string",
+				"defaultValue": "@linkedservice().TableName"
+			}
+		},
 		"type": "AzureSqlTable",
 		"schema": []
 	}
