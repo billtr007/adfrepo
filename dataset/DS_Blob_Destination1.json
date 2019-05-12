@@ -1,5 +1,5 @@
 {
-	"name": "SK1_Blob_Destination1",
+	"name": "DS_Blob_Destination1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_Blob_Destination1",
