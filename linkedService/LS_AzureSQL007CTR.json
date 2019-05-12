@@ -12,7 +12,7 @@
 					"referenceName": "razr_keyvault",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "sql007srv"
+				"secretName": "IntegrationSPN"
 			},
 			"tenant": "d9384a11-3828-4645-8183-029509349c1c"
 		}
