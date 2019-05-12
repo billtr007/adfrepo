@@ -1,5 +1,5 @@
 {
-	"name": "DS_SQL_XPS13",
+	"name": "DS_SQL_Desktop",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_SQL_Desktop",
