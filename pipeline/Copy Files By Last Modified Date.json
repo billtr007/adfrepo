@@ -4,8 +4,8 @@
 		"description": "Copy new and changed files only by using LastModifiedDate",
 		"activities": [
 			{
-				"name": "CopyNewFiles",
-				"description": "Copy new and changed files only by using LastModifiedDate",
+				"name": "Copy New Files From File Share to Blob",
+				"description": "Copy new and changed files from file share to Azure Blob, based on LastModifiedDate.  ",
 				"type": "Copy",
 				"policy": {
 					"timeout": "7.00:00:00",
