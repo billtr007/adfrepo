@@ -15,18 +15,41 @@
 					"secureInput": false
 				},
 				"typeProperties": {
+					"source": {
+						"type": "FileSystemSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "BlobSink"
+					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_FileShareName",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SK1_Blob_Destination1",
+						"type": "DatasetReference",
+						"parameters": {
+							"ContainerName": {
+								"value": "@pipeline().parameters.FolderPath_Destination",
+								"type": "Expression"
+							}
+						}
+					}
+				]
 			}
 		],
 		"parameters": {
-			"FolderPath_Source": {
-				"type": "String",
-				"defaultValue": "/<myfolder>/<sub_folder>/"
+			"FileShare_Source": {
+				"type": "String"
 			},
-			"FolderPath_Destination": {
-				"type": "String",
-				"defaultValue": "/<myfolder>/<sub_folder>/"
+			"Blob_Destination": {
+				"type": "String"
 			},
 			"LastModified_From": {
 				"type": "String",
@@ -34,7 +57,7 @@
 			},
 			"LastModified_To": {
 				"type": "String",
-				"defaultValue": "2019-03-01T00:00:00Z"
+				"defaultValue": "2019-05-1T00:00:00Z"
 			}
 		}
 	}
