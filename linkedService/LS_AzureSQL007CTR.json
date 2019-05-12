@@ -12,7 +12,8 @@
 					"referenceName": "razr_keyvault",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "IntegrationSPN"
+				"secretName": "IntegrationSPN",
+				"secretVersion": "82cd395e022d4891930515ec9ef8d739"
 			},
 			"tenant": "d9384a11-3828-4645-8183-029509349c1c"
 		}
