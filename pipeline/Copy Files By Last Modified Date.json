@@ -27,7 +27,13 @@
 				"inputs": [
 					{
 						"referenceName": "DS_FileShareName",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"SubFolderName": {
+								"value": "@pipeline().parameters.FileShare_Source",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
@@ -46,18 +52,20 @@
 		],
 		"parameters": {
 			"FileShare_Source": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "*"
 			},
 			"Blob_Destination": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "store1"
 			},
 			"LastModified_From": {
 				"type": "String",
-				"defaultValue": "2019-02-01T00:00:00Z"
+				"defaultValue": "2019-02-01"
 			},
 			"LastModified_To": {
 				"type": "String",
-				"defaultValue": "2019-05-1T00:00:00Z"
+				"defaultValue": "2019-05-11"
 			}
 		}
 	}
