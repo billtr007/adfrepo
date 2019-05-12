@@ -51,7 +51,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"ContainerName": {
-								"value": "@pipeline().parameters.Blob_Destination",
+								"value": "@pipeline().parameters.Blob_ContainerName",
 								"type": "Expression"
 							}
 						}
@@ -89,13 +89,12 @@
 			"FileShare_Source": {
 				"type": "String"
 			},
-			"Blob_Destination": {
+			"Blob_ContainerName": {
 				"type": "String",
 				"defaultValue": "store1"
 			},
 			"LastModified_From": {
-				"type": "String",
-				"defaultValue": "@{activity('Get Metadata').output.lastModified}"
+				"type": "String"
 			},
 			"LastModified_To": {
 				"type": "String",
