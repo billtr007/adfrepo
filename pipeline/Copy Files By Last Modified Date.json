@@ -39,7 +39,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "SK1_Blob_Destination1",
+						"referenceName": "DS_Blob_Store",
 						"type": "DatasetReference",
 						"parameters": {
 							"ContainerName": {
