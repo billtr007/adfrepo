@@ -36,7 +36,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"ContainerName": {
-								"value": "@pipeline().parameters.FolderPath_Destination",
+								"value": "@pipeline().parameters.Blob_Destination",
 								"type": "Expression"
 							}
 						}
