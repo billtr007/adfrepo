@@ -1,0 +1,11 @@
+{
+	"name": "DS_Watermark",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQL007CTR",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
